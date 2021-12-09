@@ -1,10 +1,11 @@
 {
   "name": "employee_tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "***\r ## Table of Contents\r * [Description](#description)\r * [Deployment](#deployment)\r * [Usage](#usage)\r * [Contact](#contact)\r * [Repository](#repository)\r ### Description\r This is a command-line application that uses a content management system (CMS) interface which allows non-developers to easily view and interact with so they can manage a company's employee database.",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "seed": "node db/seed.sql"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +14,15 @@
     "console.table": "^0.10.0",
     "inquirer": "^7.0.0",
     "mysql2": "^2.1.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanPGolden/Employee_Tracker.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/DanPGolden/Employee_Tracker/issues"
+  },
+  "homepage": "https://github.com/DanPGolden/Employee_Tracker#readme"
 }

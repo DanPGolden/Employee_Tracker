@@ -1,10 +1,24 @@
-const { prompt } = require("inquirer");
+const inquirer = require("inquirer");
 const logo = require("asciiart-logo");
 const db = require("./db");
-require("console.table");
+const consoleTable = require("console.table");
+const mysql = require("mysql2");
+
+// const connection = mysql.createConnection({
+//   host: "localhost",
+//   // Your username
+//   user: "root",
+//   // Your password
+//   password: "Dorkjuice@1",
+//   database: "employees"
+// });
+
+// connection.connect(function (err) {
+//   if (err) throw err;
+  
+// });
 
 init();
-
 // Display logo text, load main prompts
 function init() {
   const logoText = logo({ name: "Employee Manager" }).render();
@@ -15,7 +29,8 @@ function init() {
 }
 
 function loadMainPrompts() {
-  prompt([
+  inquirer
+  .prompt([
     {
       type: "list",
       name: "choice",
@@ -129,11 +144,19 @@ function loadMainPrompts() {
       case "REMOVE_ROLE":
         removeRole();
         break;
-      default:
+      case "QUIT":
         quit();
+        break;
+      default:
+        //quit();
     }
-  }
-  )
+  })
+  .catch((err)=> {
+    console.log("ERROR: ", err)
+  })
+
+
+
 }
 
 // View all employees
@@ -157,7 +180,7 @@ function viewEmployeesByDepartment() {
         value: id
       }));
 
-      prompt([
+      inquirer.prompt([
         {
           type: "list",
           name: "departmentId",
@@ -185,7 +208,7 @@ function viewEmployeesByManager() {
         value: id
       }));
 
-      prompt([
+      inquirer.prompt([
         {
           type: "list",
           name: "managerId",
@@ -217,7 +240,7 @@ function removeEmployee() {
         value: id
       }));
 
-      prompt([
+      inquirer.prompt([
         {
           type: "list",
           name: "employeeId",
@@ -241,7 +264,7 @@ function updateEmployeeRole() {
         value: id
       }));
 
-      prompt([
+      inquirer.prompt([
         {
           type: "list",
           name: "employeeId",
@@ -259,7 +282,7 @@ function updateEmployeeRole() {
                 value: id
               }));
 
-              prompt([
+              inquirer.prompt([
                 {
                   type: "list",
                   name: "roleId",
@@ -285,7 +308,7 @@ function updateEmployeeManager() {
         value: id
       }));
 
-      prompt([
+      inquirer.prompt([
         {
           type: "list",
           name: "employeeId",
@@ -303,7 +326,7 @@ function updateEmployeeManager() {
                 value: id
               }));
 
-              prompt([
+              inquirer.prompt([
                 {
                   type: "list",
                   name: "managerId",
@@ -341,7 +364,7 @@ function addRole() {
         value: id
       }));
 
-      prompt([
+      inquirer.prompt([
         {
           name: "title",
           message: "What is the name of the role?"
@@ -375,7 +398,7 @@ function removeRole() {
         value: id
       }));
 
-      prompt([
+      inquirer.prompt([
         {
           type: "list",
           name: "roleId",
@@ -403,7 +426,7 @@ function viewDepartments() {
 
 // Add a department
 function addDepartment() {
-  prompt([
+  inquirer.prompt([
     {
       name: "name",
       message: "What is the name of the department?"
@@ -427,7 +450,7 @@ function removeDepartment() {
         value: id
       }));
 
-      prompt({
+      inquirer.prompt({
         type: "list",
         name: "departmentId",
         message:
@@ -453,7 +476,7 @@ function viewUtilizedBudgetByDepartment() {
 
 // Add an employee
 function addEmployee() {
-  prompt([
+  inquirer.prompt([
     {
       name: "first_name",
       message: "What is the employee's first name?"
@@ -475,7 +498,7 @@ function addEmployee() {
             value: id
           }));
 
-          prompt({
+          inquirer.prompt({
             type: "list",
             name: "roleId",
             message: "What is the employee's role?",
@@ -494,7 +517,7 @@ function addEmployee() {
 
                   managerChoices.unshift({ name: "None", value: null });
 
-                  prompt({
+                  inquirer.prompt({
                     type: "list",
                     name: "managerId",
                     message: "Who is the employee's manager?",
