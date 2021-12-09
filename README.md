@@ -22,6 +22,7 @@ If you have any questions about this project or would like to report and issue, 
 <br>
 ### Video
 The following is a video demonstration of the application in use.
+https://watch.screencastify.com/v/lGzI3wd4s0nsKLmB24BW
 <br>
 ### Repository
 https://github.com/DanPGolden/Employee_Tracker
