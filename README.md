@@ -1,5 +1,6 @@
-# Employee Tracker
+# Employee Manager
 ***
+![Employee Tracker Example](employee_example.png)
 ## Table of Contents
 * [Description](#description)
 * [Deployment](#deployment)
